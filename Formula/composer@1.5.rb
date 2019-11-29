@@ -27,7 +27,7 @@ class ComposerAT15 < AbstractPhpPhar
   # The default behavior is to create a shell script that invokes the phar file.
   # Other tools, at least Ansible, expect the composer executable to be a PHP
   # script, so override this method. See
-  # https://github.com/Homebrew/homebrew-php/issues/3590
+  # https://github.com/Homebrew/homebrew-home-php/issues/3590
   def phar_wrapper
     <<~EOS
       #!/usr/bin/env php

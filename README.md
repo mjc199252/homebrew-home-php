@@ -1,4 +1,4 @@
 # homebrew-home-php
 For personal use only 
 
-From the homebrew-PHP
+From the homebrew-home-php

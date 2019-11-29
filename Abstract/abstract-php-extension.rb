@@ -10,7 +10,7 @@ end
 class InvalidPhpizeError < RuntimeError
   def initialize(installed_php_version, required_php_version)
     super <<~EOS
-      Version of phpize (PHP#{installed_php_version}) in $PATH does not support building this extension version (PHP#{required_php_version}). Consider installing  with the `--without-homebrew-php` flag.
+      Version of phpize (PHP#{installed_php_version}) in $PATH does not support building this extension version (PHP#{required_php_version}). Consider installing  with the `--without-homebrew-home-php` flag.
     EOS
   end
 end
@@ -19,7 +19,7 @@ class AbstractPhpExtension < Formula
   def initialize(*)
     super
 
-    if build.without? "homebrew-php"
+    if build.without? "homebrew-home-php"
       installed_php_version = nil
       i = IO.popen("#{phpize} -v")
       out = i.readlines.join("")
@@ -40,7 +40,7 @@ class AbstractPhpExtension < Formula
   def self.init
     depends_on "autoconf" => :build
 
-    option "without-homebrew-php", "Ignore homebrew PHP and use default instead"
+    option "without-homebrew-home-php", "Ignore homebrew PHP and use default instead"
     option "without-config-file", "Do not install extension config file"
   end
 
@@ -65,7 +65,7 @@ class AbstractPhpExtension < Formula
   end
 
   def phpize
-    if build.without? "homebrew-php"
+    if build.without? "homebrew-home-php"
       "phpize"
     else
       "#{Formula[php_formula].opt_bin}/phpize"
@@ -73,7 +73,7 @@ class AbstractPhpExtension < Formula
   end
 
   def phpini
-    if build.without? "homebrew-php"
+    if build.without? "homebrew-home-php"
       "php.ini presented by \"php --ini\""
     else
       "#{Formula[php_formula].config_path}/php.ini"
@@ -81,7 +81,7 @@ class AbstractPhpExtension < Formula
   end
 
   def phpconfig
-    if build.without? "homebrew-php"
+    if build.without? "homebrew-home-php"
       ""
     else
       "--with-php-config=#{Formula[php_formula].opt_bin}/php-config"
@@ -182,7 +182,7 @@ class AbstractPhp53Extension < AbstractPhpExtension
 
   def self.init(opts = [])
     super()
-    depends_on "php53" => opts if build.with?("homebrew-php")
+    depends_on "php53" => opts if build.with?("homebrew-home-php")
   end
 end
 
@@ -191,7 +191,7 @@ class AbstractPhp54Extension < AbstractPhpExtension
 
   def self.init(opts = [])
     super()
-    depends_on "php54" => opts if build.with?("homebrew-php")
+    depends_on "php54" => opts if build.with?("homebrew-home-php")
   end
 end
 
@@ -200,7 +200,7 @@ class AbstractPhp55Extension < AbstractPhpExtension
 
   def self.init(opts = [])
     super()
-    depends_on "php55" => opts if build.with?("homebrew-php")
+    depends_on "php55" => opts if build.with?("homebrew-home-php")
   end
 end
 
@@ -209,7 +209,7 @@ class AbstractPhp56Extension < AbstractPhpExtension
 
   def self.init(opts = [])
     super()
-    depends_on "php56" => opts if build.with?("homebrew-php")
+    depends_on "php56" => opts if build.with?("homebrew-home-php")
   end
 end
 
@@ -218,7 +218,7 @@ class AbstractPhp70Extension < AbstractPhpExtension
 
   def self.init(opts = [])
     super()
-    depends_on "php70" => opts if build.with?("homebrew-php")
+    depends_on "php70" => opts if build.with?("homebrew-home-php")
   end
 end
 
@@ -227,7 +227,7 @@ class AbstractPhp71Extension < AbstractPhpExtension
 
   def self.init(opts = [])
     super()
-    depends_on "php71" => opts if build.with?("homebrew-php")
+    depends_on "php71" => opts if build.with?("homebrew-home-php")
   end
 end
 
@@ -236,6 +236,6 @@ class AbstractPhp72Extension < AbstractPhpExtension
 
   def self.init(opts = [])
     super()
-    depends_on "php72" => opts if build.with?("homebrew-php")
+    depends_on "php72" => opts if build.with?("homebrew-home-php")
   end
 end

@@ -146,7 +146,7 @@ class AbstractPhp < Formula
       opoo "Backing up all known pear.conf and .pearrc files"
       opoo <<-INFO
 If you have a pre-existing pear install outside
-         of homebrew-php, or you are using a non-standard
+         of homebrew-home-php, or you are using a non-standard
          pear.conf location, installation may fail.
 INFO
       mv(config_pear, "#{config_pear}-backup") if File.exist? config_pear
@@ -529,7 +529,7 @@ INFO
 
             PATH="#{HOMEBREW_PREFIX}/bin:$PATH"
 
-      PHP#{php_version_path} Extensions will always be compiled against this PHP. Please install them using --without-homebrew-php to enable compiling against system PHP.
+      PHP#{php_version_path} Extensions will always be compiled against this PHP. Please install them using --without-homebrew-home-php to enable compiling against system PHP.
     EOS
 
     s << <<~EOS
@@ -600,7 +600,7 @@ INFO
       s << <<~EOS
         You may also need to edit the plist to use the correct "UserName".
 
-        Please note that the plist was called 'homebrew-php.josegonzalez.php#{php_version.delete(".")}.plist' in old versions of this formula.
+        Please note that the plist was called 'homebrew-home-php.josegonzalez.php#{php_version.delete(".")}.plist' in old versions of this formula.
 
         With the release of macOS Sierra the Apache module is now not built by default. If you want to build it on your system you have to install php with the --with-httpd option. See  brew options php#{php_version_path} for more details.
       EOS
@@ -610,7 +610,7 @@ INFO
       By 31st March 2018 we will deprecate and archive the PHP tap.
       Some of the formulae will be migrated to homebrew-core.
 
-      For more details, see https://github.com/Homebrew/homebrew-php/issues/4721
+      For more details, see https://github.com/Homebrew/homebrew-home-php/issues/4721
     EOS
 
     s.join "\n"

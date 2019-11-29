@@ -5,7 +5,7 @@ Another advantage, especially for local development, is that PHP may run as your
 ## Quick summary
 
 1. `brew install httpd`
-2. `brew tap homebrew/homebrew-php` # See caveats
+2. `brew tap homebrew/homebrew-home-php` # See caveats
 3. `brew install php70` # See caveats
 4. Edit Apache main conf file: `$(brew --prefix)/etc/httpd/httpd.conf`
     a. Uncomment: `LoadModule proxy_module  lib/httpd/modules/mod_proxy.so`

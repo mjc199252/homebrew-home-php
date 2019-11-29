@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), 'homebrew-php-requirement')
+require File.join(File.dirname(__FILE__), 'homebrew-home-php-requirement')
 
 class PharBuildingRequirement < HomebrewPhpRequirement
   def satisfied?

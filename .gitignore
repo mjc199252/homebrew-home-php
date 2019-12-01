@@ -9,11 +9,10 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
-
+/.idea/
 # Used by dotenv library to load environment variables.
 # .env
-
-## Specific to RubyMotion:
+# Specific to RubyMotion:
 .dat*
 .repl_history
 build/

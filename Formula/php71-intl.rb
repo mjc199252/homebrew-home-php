@@ -5,16 +5,7 @@ class Php71Intl < AbstractPhp71Extension
   desc "Wrapper for the ICU library"
   homepage "https://php.net/manual/en/book.intl.php"
   revision 25
-
-  bottle do
-    sha256 "f80a795a09328a9441bae4a8a60fa0d6d43ec5adc98f5aa5f51d06f4522c07fe" => :high_sierra
-    sha256 "f8056ad88e3da5272876ff0639c331883db62fe7d0b9389f68d56420b4445665" => :sierra
-    sha256 "0bf6a1caecb8d7a92afbd90022b168ebebefe6c14636e208bb3481eba3501da0" => :el_capitan
-  end
-
-  url PHP_SRC_TARBALL
-  sha256 PHP_CHECKSUM[:sha256]
-
+  sha256 "f80a795a09328a9441bae4a8a60fa0d6d43ec5adc98f5aa5f51d06f4522c07fe"
   depends_on "icu4c"
 
   needs :cxx11
@@ -24,7 +15,7 @@ class Php71Intl < AbstractPhp71Extension
     Dir.chdir "ext/intl"
 
     safe_phpize
-    system "./configure", "--prefix=#{prefix}",
+    system "./buildconf", "--force","./configure", "--prefix=#{prefix}",
                           phpconfig,
                           "--disable-dependency-tracking",
                           "--enable-intl",

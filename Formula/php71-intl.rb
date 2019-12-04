@@ -5,7 +5,10 @@ class Php71Intl < AbstractPhp71Extension
   desc "Wrapper for the ICU library"
   homepage "https://php.net/manual/en/book.intl.php"
   revision 25
-  sha256 "f80a795a09328a9441bae4a8a60fa0d6d43ec5adc98f5aa5f51d06f4522c07fe"
+
+  url PHP_SRC_TARBALL
+  sha256 PHP_CHECKSUM[:sha256]
+
   depends_on "icu4c"
 
   needs :cxx11
@@ -15,11 +18,11 @@ class Php71Intl < AbstractPhp71Extension
     Dir.chdir "ext/intl"
 
     safe_phpize
-    system "./buildconf", "--force","./configure", "--prefix=#{prefix}",
-                          phpconfig,
-                          "--disable-dependency-tracking",
-                          "--enable-intl",
-                          "--with-icu-dir=#{Formula["icu4c"].prefix}"
+    system "./configure", "--prefix=#{prefix}",
+           phpconfig,
+           "--disable-dependency-tracking",
+           "--enable-intl",
+           "--with-icu-dir=#{Formula["icu4c"].prefix}"
     system "make"
     prefix.install "modules/intl.so"
     write_config_file if build.with? "config-file"
